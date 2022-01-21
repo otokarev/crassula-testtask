@@ -1,40 +1,36 @@
-# Symfony Docker
-
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework, with full [HTTP/2](https://symfony.com/doc/current/weblink.html), HTTP/3 and HTTPS support.
-
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
-
-## Getting Started
-
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/)
-2. Run `docker-compose build --pull --no-cache` to build fresh images
-3. Run `docker-compose up` (the logs will be displayed in the current shell)
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker-compose down --remove-orphans` to stop the Docker containers.
-
-## Features
-
-* Production, development and CI ready
-* Automatic HTTPS (in dev and in prod!)
-* HTTP/2, HTTP/3 and [Preload](https://symfony.com/doc/current/web_link.html) support
-* Built-in [Mercure](https://symfony.com/doc/current/mercure.html) hub
-* [Vulcain](https://vulcain.rocks) support
-* Just 2 services (PHP FPM and Caddy server)
-* Super-readable configuration
-
-**Enjoy!**
-
-## Docs
-
-1. [Build options](docs/build.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Installing Xdebug](docs/xdebug.md)
-6. [Using a Makefile](docs/makefile.md)
-7. [Troubleshooting](docs/troubleshooting.md)
-
-## Credits
-
-Created by [Kévin Dunglas](https://dunglas.fr), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
 # crassula-testtask
+
+Build:
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml build
+```
+Run:
+```shell
+XDEBUG_CLIENT_HOST=172.18.0.1 docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
+```
+
+# Description
+```text
+Нужно прочитать наше стандартное тестовое задание, но вместо непосредственно реализации, нужно описать подход к реализации:
+
+Предположим, что уже есть команда Symfony, которая должна обновлять курсы раз в сутки, и есть controller action, который принимает request в каком-то виде, и в каком-то виде отдаёт response.
+Как бы вы реализовали описанную функциональность, как бы хранили данные, какие классы бы использовали (repositories, services, DTO, value objects etc.), и как бы их назвали.
+
+Вот само задание
+
+1. Создайте репозитарий (на ГитХабе, например, или БитБакете), в который будете складывать код.
+
+Используя экспорт из двух источников реализуйте сбор данных о курсах валют на текущую дату посредством консольной команды
+https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+https://www.cbr.ru/scripts/XML_daily.asp
+
+Все данные нужно записать в БД используя ORM Doctrine
+Сделать конфигурацию в проекте для переключения источника данных (ECB или CBR). Уметь рассчитывать сумму для обмена между валютами, которые не являются базовыми валютами используемых центробанков (к примеру, USD-GBP).
+Написать REST сервис где можно указать сумму и связку валют и получить в ответ сконвертированую сумму
+Написать интеграционные и юнит тесты
+Пришлите ссылку на репозитарий и укажите общее время, затраченное на задание.
+Задание необходимо выполнить на фрэймворке Symfony последней версии
+Постарайтесь как можно полнее показать ваши знания и умения проектирования и написания кода.
+
+Это наше тех задание
+```
