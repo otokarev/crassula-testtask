@@ -5,15 +5,15 @@ namespace App\Model;
 class FetchService
 {
     public function __construct(
-        private RateProviderAdapter $adapter,
-        private RateBundleCollection $collection
+        private RateHistoryProvider   $provider,
+        private RateHistoryCollection $collection
     ) {
 
     }
 
     public function fetch()
     {
-        $rateBundle = $this->adapter->fetch();
-        $this->collection->add($rateBundle);
+        $rateHistory = $this->provider->fetch();
+        $this->collection->add($rateHistory);
     }
 }

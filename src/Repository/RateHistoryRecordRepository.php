@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Rates;
+use App\Entity\RateHistoryRecord;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Rates|null find($id, $lockMode = null, $lockVersion = null)
- * @method Rates|null findOneBy(array $criteria, array $orderBy = null)
- * @method Rates[]    findAll()
- * @method Rates[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method RateHistoryRecord|null find($id, $lockMode = null, $lockVersion = null)
+ * @method RateHistoryRecord|null findOneBy(array $criteria, array $orderBy = null)
+ * @method RateHistoryRecord[]    findAll()
+ * @method RateHistoryRecord[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RatesRepository extends ServiceEntityRepository
+class RateHistoryRecordRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Rates::class);
+        parent::__construct($registry, RateHistoryRecord::class);
     }
 
     // /**
-    //  * @return Rates[] Returns an array of Rates objects
+    //  * @return RateHistoryRecord[] Returns an array of RateHistoryRecord objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class RatesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Rates
+    public function findOneBySomeField($value): ?RateHistoryRecord
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

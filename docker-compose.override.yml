@@ -12,6 +12,8 @@ services:
       # - /srv/app/var
     environment:
       APP_ENV: dev
+    extra_hosts:
+      - www.cbr.ru:185.178.208.7
 
   caddy:
     volumes:
@@ -24,5 +26,5 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "8432:5432"
 ###< doctrine/doctrine-bundle ###

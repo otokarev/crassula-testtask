@@ -20,6 +20,21 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: [ 'controller.service_arguments' ]
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    ecb_rates_provider:
+        class: App\Adapter\EcbRateHistoryProviderAdapter
+        autowire: false
+        arguments:
+            - '@http_client'
+            - 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+    cbr_rates_provider:
+        class: App\Adapter\CbrRateHistoryProviderAdapter
+        autowire: false
+        arguments:
+            - '@http_client'
+            - 'https://www.cbr.ru/scripts/XML_daily.asp'
+    App\Model\RateHistoryProvider: '@ecb_rates_provider'

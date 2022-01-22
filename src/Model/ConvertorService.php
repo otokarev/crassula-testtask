@@ -2,24 +2,24 @@
 
 namespace App\Model;
 
-use Brick\Math\BigDecimal;
+use Brick\Money\Money;
 
 class ConvertorService
 {
     public function __construct(
-        private RateBundleCollection $collection,
+        private RateProvider $rateProvider,
         private CalculatorStrategy $strategy
     ) {
     }
 
-    public function process(string $base, string $quote, BigDecimal $amount): BigDecimal
+    public function convert(Money $money, string $quoteCurrency): Money
     {
-        $rateBundle = $this->collection->last();
+        if ($money->getCurrency()->getCurrencyCode() === $quoteCurrency) {
+            return $money;
+        }
 
-        return $this->strategy->calculate(
-            $rateBundle->getRate($base),
-            $rateBundle->getRate($quote),
-            $amount
-        );
+        $rate = $this->rateProvider->get($money->getCurrency()->getCurrencyCode(), $quoteCurrency);
+
+        return $this->strategy->calculate($rate, $money);
     }
 }

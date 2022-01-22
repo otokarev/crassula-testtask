@@ -2,12 +2,19 @@
 
 namespace App\Model;
 
-use Brick\Math\BigDecimal;
+use Brick\Math\RoundingMode;
+use Brick\Money\Money;
 
 class CalculatorStrategy
 {
-    public function calculate(BigDecimal $base, BigDecimal $quote, BigDecimal $amount): BigDecimal
+    public function calculate(Rate $rate, Money $money): Money
     {
-        return $base->dividedBy($quote)->multipliedBy($amount);
+        if ($rate->getBaseCurrency() !== $money->getCurrency()->getCurrencyCode()) {
+            throw new \RuntimeException('rate/money inconsistency');
+        }
+
+        $amount = $money->multipliedBy($rate->getValue(), RoundingMode::DOWN)->getAmount();
+
+        return Money::of($amount, $rate->getQuoteCurrency());
     }
 }
