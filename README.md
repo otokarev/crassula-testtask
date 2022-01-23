@@ -61,6 +61,7 @@ XDEBUG_CLIENT_HOST=172.18.0.1  docker-compose -f docker-compose.yml -f docker-co
 ```
 
 Сервис будет доступен в браузере по адресу `https://localhost/convert/USD/RUB/1`
+
 Здесь:
 * `USD` - валюта, из которой конвертировать
 * `RUB` - валюта, в которую конвертировать
