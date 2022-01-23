@@ -2,7 +2,7 @@
 
 namespace App\Tests\Model;
 
-use App\Model\CalculatorStrategy;
+use App\Model\CalculateStrategy;
 use App\Model\ConvertorService;
 use App\Model\Rate;
 use App\Model\RateProvider;
@@ -20,7 +20,7 @@ class ConvertorServiceTest extends TestCase
             ->willReturn($this->createStub(Rate::class))
         ;
 
-        $strategy = $this->createMock(CalculatorStrategy::class);
+        $strategy = $this->createMock(CalculateStrategy::class);
         $strategy->expects($this->once())
             ->method('calculate')
             ->with(

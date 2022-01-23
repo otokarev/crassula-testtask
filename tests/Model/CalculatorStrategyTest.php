@@ -2,7 +2,7 @@
 
 namespace App\Tests\Model;
 
-use App\Model\CalculatorStrategy;
+use App\Model\CalculateStrategy;
 use App\Model\Rate;
 use Brick\Math\BigDecimal;
 use Brick\Money\Money;
@@ -12,7 +12,7 @@ class CalculatorStrategyTest extends TestCase
 {
     public function testCalculate()
     {
-        $actual = (new CalculatorStrategy())
+        $actual = (new CalculateStrategy())
             ->calculate(
                 new Rate('USD', 'RUB', BigDecimal::of(70)),
                 Money::of(10, 'USD')

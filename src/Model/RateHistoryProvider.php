@@ -4,5 +4,5 @@ namespace App\Model;
 
 interface RateHistoryProvider
 {
-    public function fetch(): RateHistory;
+    public function fetch(): RateHistoryRecord;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Model\FetchService;
+use App\Model\RateHistoryRecordFetchService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,10 +11,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 class FetchRatesCommand extends Command
 {
     protected static $defaultName = 'app:fetch-rates';
-    private FetchService $service;
+    private RateHistoryRecordFetchService $service;
     private ManagerRegistry $doctrine;
 
-    public function __construct(FetchService $service, ManagerRegistry $doctrine)
+    public function __construct(RateHistoryRecordFetchService $service, ManagerRegistry $doctrine)
     {
         $this->service = $service;
         $this->doctrine = $doctrine;

@@ -5,7 +5,7 @@ namespace App\Model;
 use Brick\Math\RoundingMode;
 use Brick\Money\Money;
 
-class CalculatorStrategy
+class CalculateStrategy
 {
     public function calculate(Rate $rate, Money $money): Money
     {

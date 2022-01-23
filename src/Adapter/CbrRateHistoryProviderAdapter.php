@@ -3,7 +3,7 @@
 namespace App\Adapter;
 
 use App\Entity\RateHistoryRecord;
-use App\Model\RateHistory;
+use App\Model\RateHistoryRecord as RateHistoryRecordInterface;
 use App\Model\RateHistoryProvider;
 use Carbon\Carbon;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -20,10 +20,10 @@ class CbrRateHistoryProviderAdapter implements RateHistoryProvider
 
     /**
      * TODO: error handling
-     * @return RateHistory
+     * @return RateHistoryRecordInterface
      * @throws TransportExceptionInterface
      */
-    public function fetch(): RateHistory
+    public function fetch(): RateHistoryRecordInterface
     {
         $response = $this->client->request('GET', $this->url);
 

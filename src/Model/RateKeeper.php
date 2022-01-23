@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Brick\Math\BigDecimal;
 
-interface RateHistory
+interface RateKeeper
 {
     public function getRate(string $currency): BigDecimal;
 }

@@ -6,13 +6,13 @@ use Brick\Math\RoundingMode;
 
 class RateProvider
 {
-    public function __construct(private RateHistoryCollection $collection) {}
+    public function __construct(private RateKeeperCollection $collection) {}
 
     public function get(string $base, string $quote): Rate
     {
-        $rateHistory = $this->collection->last();
+        $rateKeeper = $this->collection->last();
 
-        $rate = $rateHistory->getRate($base)->dividedBy($rateHistory->getRate($quote), 10, RoundingMode::DOWN);
+        $rate = $rateKeeper->getRate($base)->dividedBy($rateKeeper->getRate($quote), 10, RoundingMode::DOWN);
 
         return new Rate($base, $quote, $rate);
     }

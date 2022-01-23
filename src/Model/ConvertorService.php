@@ -8,7 +8,7 @@ class ConvertorService
 {
     public function __construct(
         private RateProvider $rateProvider,
-        private CalculatorStrategy $strategy
+        private CalculateStrategy $strategy
     ) {
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Model;
 
-class FetchService
+class RateHistoryRecordFetchService
 {
     public function __construct(
-        private RateHistoryProvider   $provider,
-        private RateHistoryCollection $collection
+        private RateHistoryProvider $provider,
+        private RateHistoryRecordCollection $collection
     ) {
 
     }

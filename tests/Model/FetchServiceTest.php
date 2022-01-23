@@ -3,8 +3,8 @@
 namespace App\Tests\Model;
 
 use App\Entity\RateHistoryRecord;
-use App\Model\FetchService;
-use App\Model\RateHistoryCollection;
+use App\Model\RateHistoryRecordFetchService;
+use App\Model\RateHistoryRecordCollection;
 use App\Model\RateHistoryProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +14,7 @@ class FetchServiceTest extends TestCase
     {
         $rateHistory = new RateHistoryRecord();
 
-        $collection = $this->createMock(RateHistoryCollection::class);
+        $collection = $this->createMock(RateHistoryRecordCollection::class);
         $collection->expects($this->once())
             ->method('add')
             ->with($this->isInstanceOf(RateHistoryRecord::class))
@@ -26,7 +26,7 @@ class FetchServiceTest extends TestCase
             ->willReturn($rateHistory)
         ;
 
-        $convertor = new FetchService($adapter, $collection);
+        $convertor = new RateHistoryRecordFetchService($adapter, $collection);
 
         $convertor->fetch();
     }

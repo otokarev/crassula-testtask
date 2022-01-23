@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use App\Model\InvalidRateException;
-use App\Model\RateHistory as RateHistoryInterface;
+use App\Model\RateHistoryRecord as RateHistoryRecordInterface;
+use App\Model\RateKeeper;
 use App\Repository\RateHistoryRecordRepository;
 use Brick\Math\BigDecimal;
 use Brick\Math\RoundingMode;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RateHistoryRecordRepository::class)]
-class RateHistoryRecord implements RateHistoryInterface
+class RateHistoryRecord implements RateHistoryRecordInterface, RateKeeper
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
