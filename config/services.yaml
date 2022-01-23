@@ -33,4 +33,4 @@ services:
         class: App\Adapter\CbrRateHistoryRecordFetcher
         arguments:
             $url: 'https://www.cbr.ru/scripts/XML_daily.asp'
-    App\Model\RateHistoryRecordFetcher: '@ecb_rates_fetcher'
+    App\Model\RateHistoryFetcher\RateHistoryRecordFetcher: '@ecb_rates_fetcher'

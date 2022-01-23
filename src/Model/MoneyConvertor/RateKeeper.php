@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\MoneyConvertor;
 
 use Brick\Math\BigDecimal;
 

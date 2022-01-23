@@ -2,8 +2,8 @@
 
 namespace App\Collection;
 
-use App\Model\RateHistoryRecord;
-use App\Model\RateHistoryRecordCollection;
+use App\Model\RateHistoryFetcher\RateHistoryRecord;
+use App\Model\RateHistoryFetcher\RateHistoryRecordCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 class DoctrineRateHistoryRecordCollection implements RateHistoryRecordCollection

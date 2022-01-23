@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Tests\Model;
+namespace App\Tests\Model\MoneyConvertor;
 
 use App\Entity\RateHistoryRecord;
-use App\Model\RateHistoryRecordFetchService;
-use App\Model\RateHistoryRecordCollection;
-use App\Model\RateHistoryRecordFetcher;
+use App\Model\RateHistoryFetcher\RateHistoryRecordCollection;
 use PHPUnit\Framework\TestCase;
 
 class RateHistoryRecordFetchServiceTest extends TestCase
@@ -20,13 +18,13 @@ class RateHistoryRecordFetchServiceTest extends TestCase
             ->with($this->isInstanceOf(RateHistoryRecord::class))
         ;
 
-        $adapter = $this->createMock(RateHistoryRecordFetcher::class);
+        $adapter = $this->createMock(\App\Model\RateHistoryFetcher\RateHistoryRecordFetcher::class);
         $adapter->expects($this->once())
             ->method('fetch')
             ->willReturn($rateHistory)
         ;
 
-        $convertor = new RateHistoryRecordFetchService($adapter, $collection);
+        $convertor = new \App\Model\RateHistoryFetcher\RateHistoryRecordFetchService($adapter, $collection);
 
         $convertor->fetch();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\MoneyConvertor;
 
 class InvalidRateException extends \InvalidArgumentException
 {

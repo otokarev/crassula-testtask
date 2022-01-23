@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\Model;
+namespace App\Tests\Model\MoneyConvertor;
 
-use App\Model\ConvertorService;
+use App\Model\MoneyConvertor\ConvertorService;
+use App\Model\MoneyConvertor\RateCalculateService;
 use App\Model\Rate;
-use App\Model\RateCalculateService;
 use Brick\Math\BigDecimal;
 use Brick\Money\Money;
 use PHPUnit\Framework\TestCase;

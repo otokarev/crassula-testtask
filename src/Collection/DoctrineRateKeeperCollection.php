@@ -3,8 +3,8 @@
 namespace App\Collection;
 
 use App\Entity\RateHistoryRecord;
-use App\Model\RateKeeper;
-use App\Model\RateKeeperCollection;
+use App\Model\MoneyConvertor\RateKeeper;
+use App\Model\MoneyConvertor\RateKeeperCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 class DoctrineRateKeeperCollection implements RateKeeperCollection

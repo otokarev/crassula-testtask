@@ -3,8 +3,8 @@
 namespace App\Factory;
 
 use App\Entity\RateHistoryRecord as RateHistoryRecordEntity;
-use App\Model\RateHistoryRecord;
-use App\Model\RateHistoryRecordFactory as RateHistoryRecordInterface;
+use App\Model\RateHistoryFetcher\RateHistoryRecord;
+use App\Model\RateHistoryFetcher\RateHistoryRecordFactory as RateHistoryRecordInterface;
 
 class RateHistoryRecordFactory implements RateHistoryRecordInterface
 {

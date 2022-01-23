@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Model\InvalidRateException;
-use App\Model\RateHistoryRecord as RateHistoryRecordInterface;
-use App\Model\RateKeeper;
+use App\Model\MoneyConvertor\InvalidRateException;
+use App\Model\MoneyConvertor\RateKeeper;
+use App\Model\RateHistoryFetcher\RateHistoryRecord as RateHistoryRecordInterface;
 use App\Repository\RateHistoryRecordRepository;
 use Brick\Math\BigDecimal;
 use Brick\Math\RoundingMode;

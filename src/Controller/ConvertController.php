@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\ConvertorService;
+use App\Model\MoneyConvertor\ConvertorService;
 use Brick\Money\Money;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

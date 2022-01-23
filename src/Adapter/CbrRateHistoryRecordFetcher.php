@@ -2,9 +2,9 @@
 
 namespace App\Adapter;
 
-use App\Model\RateHistoryRecord as RateHistoryRecordInterface;
-use App\Model\RateHistoryRecordFetcher;
-use App\Model\RateHistoryRecordFactory;
+use App\Model\RateHistoryFetcher\RateHistoryRecord as RateHistoryRecordInterface;
+use App\Model\RateHistoryFetcher\RateHistoryRecordFactory;
+use App\Model\RateHistoryFetcher\RateHistoryRecordFetcher;
 use Carbon\Carbon;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 

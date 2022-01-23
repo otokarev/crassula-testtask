@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Tests\Model;
+namespace App\Tests\Model\MoneyConvertor;
 
-use App\Model\RateCalculateService;
-use App\Model\RateKeeper;
-use App\Model\RateKeeperCollection;
+use App\Model\MoneyConvertor\RateKeeper;
 use Brick\Math\BigDecimal;
 use PHPUnit\Framework\TestCase;
 
@@ -19,10 +17,10 @@ class RateCalculateServiceTest extends TestCase
                 ['RUB', BigDecimal::of('1')],
             ]);
 
-        $collection = $this->createStub(RateKeeperCollection::class);
+        $collection = $this->createStub(\App\Model\MoneyConvertor\RateKeeperCollection::class);
         $collection->method('last')->willReturn($rateKeeper);
 
-        $service = new RateCalculateService($collection);
+        $service = new \App\Model\MoneyConvertor\RateCalculateService($collection);
 
         $this->assertEquals('70', $service->getRateForPair('USD', 'RUB'));
     }

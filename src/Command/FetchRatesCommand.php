@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Model\RateHistoryRecordFetchService;
+use App\Model\RateHistoryFetcher\RateHistoryRecordFetchService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
