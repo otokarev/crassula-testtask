@@ -5,7 +5,7 @@ namespace App\Model;
 class RateHistoryRecordFetchService
 {
     public function __construct(
-        private RateHistoryProvider $provider,
+        private RateHistoryRecordFetcher    $fetcher,
         private RateHistoryRecordCollection $collection
     ) {
 
@@ -13,7 +13,7 @@ class RateHistoryRecordFetchService
 
     public function fetch()
     {
-        $rateHistory = $this->provider->fetch();
+        $rateHistory = $this->fetcher->fetch();
         $this->collection->add($rateHistory);
     }
 }

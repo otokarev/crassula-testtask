@@ -2,15 +2,12 @@
 
 namespace App\Model;
 
+use Brick\Math\RoundingMode;
 use Brick\Money\Money;
 
 class ConvertorService
 {
-    public function __construct(
-        private RateProvider $rateProvider,
-        private CalculateStrategy $strategy
-    ) {
-    }
+    public function __construct(private RateCalculateService $service) {}
 
     public function convert(Money $money, string $quoteCurrency): Money
     {
@@ -18,8 +15,10 @@ class ConvertorService
             return $money;
         }
 
-        $rate = $this->rateProvider->get($money->getCurrency()->getCurrencyCode(), $quoteCurrency);
+        $rate = $this->service->getRateForPair($money->getCurrency()->getCurrencyCode(), $quoteCurrency);
 
-        return $this->strategy->calculate($rate, $money);
+        $amount = $money->multipliedBy($rate, RoundingMode::DOWN)->getAmount();
+
+        return Money::of($amount, $quoteCurrency);
     }
 }

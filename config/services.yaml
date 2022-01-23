@@ -25,16 +25,12 @@ services:
         tags: [ 'controller.service_arguments' ]
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    ecb_rates_provider:
-        class: App\Adapter\EcbRateHistoryProviderAdapter
-        autowire: false
+    ecb_rates_fetcher:
+        class: App\Adapter\EcbRateHistoryRecordFetcher
         arguments:
-            - '@http_client'
-            - 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
-    cbr_rates_provider:
-        class: App\Adapter\CbrRateHistoryProviderAdapter
-        autowire: false
+            $url: 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml'
+    cbr_rates_fetcher:
+        class: App\Adapter\CbrRateHistoryRecordFetcher
         arguments:
-            - '@http_client'
-            - 'https://www.cbr.ru/scripts/XML_daily.asp'
-    App\Model\RateHistoryProvider: '@ecb_rates_provider'
+            $url: 'https://www.cbr.ru/scripts/XML_daily.asp'
+    App\Model\RateHistoryRecordFetcher: '@ecb_rates_fetcher'

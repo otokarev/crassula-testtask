@@ -73,6 +73,18 @@ class RateHistoryRecord implements RateHistoryRecordInterface, RateKeeper
         return $this;
     }
 
+    public function isInverse(): bool
+    {
+        return $this->inverse;
+    }
+
+    public function setInverse(bool $inverse): self
+    {
+        $this->inverse = $inverse;
+
+        return $this;
+    }
+
     public function getRate(string $currency): BigDecimal
     {
         if(!isset($this->getValues()[$currency])) {
@@ -90,17 +102,5 @@ class RateHistoryRecord implements RateHistoryRecordInterface, RateKeeper
         }
 
         return $rate;
-    }
-
-    public function isInverse(): bool
-    {
-        return $this->inverse;
-    }
-
-    public function setInverse(bool $inverse): self
-    {
-        $this->inverse = $inverse;
-
-        return $this;
     }
 }

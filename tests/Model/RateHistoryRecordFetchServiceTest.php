@@ -5,10 +5,10 @@ namespace App\Tests\Model;
 use App\Entity\RateHistoryRecord;
 use App\Model\RateHistoryRecordFetchService;
 use App\Model\RateHistoryRecordCollection;
-use App\Model\RateHistoryProvider;
+use App\Model\RateHistoryRecordFetcher;
 use PHPUnit\Framework\TestCase;
 
-class FetchServiceTest extends TestCase
+class RateHistoryRecordFetchServiceTest extends TestCase
 {
     public function testProcess()
     {
@@ -20,7 +20,7 @@ class FetchServiceTest extends TestCase
             ->with($this->isInstanceOf(RateHistoryRecord::class))
         ;
 
-        $adapter = $this->createMock(RateHistoryProvider::class);
+        $adapter = $this->createMock(RateHistoryRecordFetcher::class);
         $adapter->expects($this->once())
             ->method('fetch')
             ->willReturn($rateHistory)

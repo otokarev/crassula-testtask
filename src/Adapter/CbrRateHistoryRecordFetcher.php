@@ -2,18 +2,18 @@
 
 namespace App\Adapter;
 
-use App\Entity\RateHistoryRecord;
 use App\Model\RateHistoryRecord as RateHistoryRecordInterface;
-use App\Model\RateHistoryProvider;
+use App\Model\RateHistoryRecordFetcher;
+use App\Model\RateHistoryRecordFactory;
 use Carbon\Carbon;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class CbrRateHistoryProviderAdapter implements RateHistoryProvider
+class CbrRateHistoryRecordFetcher implements RateHistoryRecordFetcher
 {
     public function __construct(
         private HttpClientInterface $client,
-        private string $url
+        private string $url,
+        private RateHistoryRecordFactory $factory,
     ) {
 
     }
@@ -21,7 +21,6 @@ class CbrRateHistoryProviderAdapter implements RateHistoryProvider
     /**
      * TODO: error handling
      * @return RateHistoryRecordInterface
-     * @throws TransportExceptionInterface
      */
     public function fetch(): RateHistoryRecordInterface
     {
@@ -37,11 +36,6 @@ class CbrRateHistoryProviderAdapter implements RateHistoryProvider
             $values[$currency] = str_replace(',', '.', (string)$item->Value);
         }
 
-        // TODO: move it to factory
-        return (new RateHistoryRecord())
-            ->setBase('RUB')
-            ->setAt($at)
-            ->setValues($values)
-        ;
+        return $this->factory->newRateHistoryRecord('RUB', $values, $at);
     }
 }

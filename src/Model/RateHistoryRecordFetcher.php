@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-interface RateHistoryProvider
+interface RateHistoryRecordFetcher
 {
     public function fetch(): RateHistoryRecord;
 }
