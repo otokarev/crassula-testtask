@@ -1,15 +1,6 @@
 # crassula-testtask
 
-Build:
-```shell
-docker-compose -f docker-compose.yml -f docker-compose.debug.yml build
-```
-Run:
-```shell
-XDEBUG_CLIENT_HOST=172.18.0.1 docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
-```
-
-# Description
+# Задание
 ```text
 Нужно прочитать наше стандартное тестовое задание, но вместо непосредственно реализации, нужно описать подход к реализации:
 
@@ -34,3 +25,44 @@ https://www.cbr.ru/scripts/XML_daily.asp
 
 Это наше тех задание
 ```
+
+# Реализация
+**Declaimer**: Поскольку задача была только описать реализацию, приложение в вашем случае может не запуститься. Не реализованы все возможные тесты, валидация входных параметров и пр.
+
+Реализация модели лежит в директории `src/Model`
+
+Реализация прикладного и инфраструктурного уровня расположены в стандартных папках Symfony.
+
+## Импорт данных из внешних источников
+Реализацию модели можно посмотреть в директории `src/Model/RateHistoryFetcher`
+
+Клиентский код: `src/Command/FetchRatesCommand.php`
+
+Переключение адаптеров ECB<->CBR производится сменой значения
+```yaml
+services:
+    App\Model\RateHistoryFetcher\RateHistoryRecordFetcher: '@ecb_rates_fetcher'
+```
+
+## Конвертация одной валюты в другую
+Реализацию модели можно посмотреть в директории `src/Model/MoneyConvertor`
+
+Клиентский код: `src/Controller/ConvertController.php`
+
+## Запуск  приложения
+
+Собрать Docker-образы
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml -f docker-compose.override.yml build
+```
+Запустить
+```shell
+XDEBUG_CLIENT_HOST=172.18.0.1  docker-compose -f docker-compose.yml -f docker-compose.debug.yml -f docker-compose.override.yml up
+```
+
+Сервис будет доступен в браузере по адресу `https://localhost/convert/USD/RUB/1`
+Здесь:
+* `USD` - валюта, из которой конвертировать
+* `RUB` - валюта, в которую конвертировать
+* `1` - сумма, в данном примере это 1$
+
