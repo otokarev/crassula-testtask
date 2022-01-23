@@ -49,15 +49,27 @@ services:
 
 Клиентский код: `src/Controller/ConvertController.php`
 
-## Запуск  приложения
+## Запуск приложения
 
 Собрать Docker-образы
 ```shell
-docker-compose -f docker-compose.yml -f docker-compose.debug.yml -f docker-compose.override.yml build
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml build
 ```
-Запустить
+Запустить приложение
 ```shell
 XDEBUG_CLIENT_HOST=172.18.0.1  docker-compose -f docker-compose.yml -f docker-compose.debug.yml -f docker-compose.override.yml up
+```
+
+Импортировать данные об обменных курсах. Для этого
+
+зайти в контейнер:
+```shell
+docker exec -it crassula-testtask_php_1 sh
+```
+
+в консоли выполнить:
+```shell
+./bin/console app:fetch-rates
 ```
 
 Сервис будет доступен в браузере по адресу `https://localhost/convert/USD/RUB/1`
