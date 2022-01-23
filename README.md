@@ -34,7 +34,7 @@ https://www.cbr.ru/scripts/XML_daily.asp
 Реализация прикладного и инфраструктурного уровня расположены в стандартных папках Symfony.
 
 ## Импорт данных из внешних источников
-Реализацию модели можно посмотреть в директории `src/Model/RateHistoryFetcher`
+Реализацию модели предметной обрасти можно посмотреть в директории `src/Model/RateHistoryFetcher`
 
 Клиентский код: `src/Command/FetchRatesCommand.php`
 
